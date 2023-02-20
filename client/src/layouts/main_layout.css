@@ -1,0 +1,20 @@
+.layout{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 2fr 5fr 2fr 2fr 2fr 2fr 1fr ;
+    /* grid-template-areas: 'content1'
+                         'content2'
+                         'content3'
+                         'content4'
+                         'content5'
+                         'content6'
+                         'content7'; */
+                         
+}
+
+.layout__item {
+    background-color: lightblue;
+    border: 1px solid black;
+  }
