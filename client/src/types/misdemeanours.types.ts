@@ -16,7 +16,7 @@ export const WANT_TO_TALK = "I just want to talk";
 
 
 export const JUST_TALK = 'just-talk';
-export type JustTalk = typeof JUST_TALK;
+//export type JustTalk = typeof JUST_TALK;
 
 
 export type Misdemeanour = {

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Footer from "../components/footer";
+import Footer from "../components/footer/footer";
 import Header from "../components/header/header";
 import '../layouts/main_layout.css';
 
@@ -13,4 +13,4 @@ const MainLayout : React.FC = () => <>
     </section>
 </>;
 
-export default MainLayout;
+export default MainLayout; 

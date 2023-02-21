@@ -1,4 +1,5 @@
 import { ALL_MISDEMEANOURS, MISDEMEANOURS } from "../../types/misdemeanours.types";
+import './misdemeanours.css';
 
 interface FilterFieldProps {
     //filter: string;
@@ -11,7 +12,7 @@ const FilterField: React.FC<FilterFieldProps> = ({ onChangeFilter }: FilterField
 
     return (
         <>
-            <label htmlFor='filterMisdemeanours'>Filter </label>
+            <label className="container" htmlFor='filterMisdemeanours'>Filter </label>
             <select id='filterMisdemeanours' name='filterMisdemeanours' onChange={(e) => {
                 onChangeFilter(e.target.value);
             }}>
