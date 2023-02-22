@@ -24,7 +24,16 @@ export type Misdemeanour = {
 	misdemeanour: MisdemeanourKind;
 	date: string; // we'll stringify this for easy sending via HTTP rather than storing the full Date object
 	punishmentIdeaImageUrl : string;
+	confession : string;	
 };
+
+/*type TypeA = {
+    nameA: Misdemeanour;
+};
+type TypeB = {
+    punishmentIdeaImageUrl : string;	
+};
+export type TypeC = TypeA & TypeB;*/
 
 export function getMisdemeanourEmoji(type : MisdemeanourKind) : string {
 	let index = MISDEMEANOURS.indexOf(type);

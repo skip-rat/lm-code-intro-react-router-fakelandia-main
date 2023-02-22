@@ -1,13 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import { Misdemeanour } from '../../types/misdemeanours.types'
 import DisplayMisdemeanours from "./displayMisdemeanours";
 import { MisdemeanoursContext } from "../../router";
 
- export function getPunishmentIdeaImageUrl(width : number, height : number): string {
-       
-    return ('https://picsum.photos/' + width + '/' + height);
-}
+const totalMisdemeanours = 20;
 
 const Misdemeanours : React.FC = () => {
     const misdemeanourContext = useContext(MisdemeanoursContext);
@@ -28,13 +25,13 @@ const Misdemeanours : React.FC = () => {
         // todo: React is caching and showing the same random image for the Misdemeanour punishment idea
         // for now am creating a unique url for each one by altering the image size slightly 
         let size = 60;
-        arr.forEach(md => md.punishmentIdeaImageUrl = getPunishmentIdeaImageUrl(size, size++));
+        arr.forEach(md => md.punishmentIdeaImageUrl = 'https://picsum.photos/seed/picsum' + size +'/' + size++);
     }
 
     useEffect(() => {    
         if(misdemeanourContext?.misdemeanoursState.length === 0)
         {
-            getMisdemeanours(20); // read from server            
+            getMisdemeanours(totalMisdemeanours); // read from server            
         } 
         // read from context
     }, []);

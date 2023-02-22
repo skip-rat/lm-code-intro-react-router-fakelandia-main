@@ -3,11 +3,10 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { MisdemeanoursContext } from "../../../router";
-import { JUST_TALK, Misdemeanour } from "../../../types/misdemeanours.types";
+import { JUST_TALK, Misdemeanour, MisdemeanourKind } from "../../../types/misdemeanours.types";
 import ConfessionTypeField from "../confessionTypeField/confessionTypeField";
 import DetailsField from "../detailsField/detailsField";
 import SubjectField from "../subjectField/subjectField";
-import getPunishmentIdeaImageUrl from '../../misdemeanours/misdemeanours'
 import { validateSubject, validateDetails } from "../validator";
 import './confessionForm.css';
 
@@ -36,8 +35,7 @@ export const ConfessionForm: React.FC = () => {
             reason: confessionType,
             details: details
         }
-
-        // POST request using fetch inside useEffect React hook
+        
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -54,8 +52,19 @@ export const ConfessionForm: React.FC = () => {
                 alert(data.message);
             }
             else if(data.justTalked === false)
-            {            
-                // TODO: add confession in context??
+            {       
+                const date = new Date();   
+                                 
+                const md : Misdemeanour = {
+                    
+                        citizenId: getRandomInt(100, 10000),
+                        misdemeanour: confessionType as MisdemeanourKind,
+                        date: date.getDate()  + "/" + (date.getMonth() + 1) + "/" + date.getFullYear(), 
+                        punishmentIdeaImageUrl : 'https://picsum.photos/60/60?random=10', 
+                        confession : confessionData.details                       
+                    };
+                                    
+                misdemeanourContext?.setMisdemeanoursState([...misdemeanourContext.misdemeanoursState, md]);
                                 
                 navigate('/misdemeanours');
             }
@@ -64,6 +73,10 @@ export const ConfessionForm: React.FC = () => {
         }    
         
      };
+
+     const getRandomInt = (min : number, max : number) : number => {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;        
+      }
 
     const validateForm = () : boolean => {
         return validateSubject(subject) === undefined &&
@@ -75,7 +88,7 @@ export const ConfessionForm: React.FC = () => {
             <form>  
                 <section className="text">                
                     <p>It's very difficult to catch people committing misdemeanours so we
-                        appreciate it whrn citizens confess to us directly.</p>
+                        appreciate it when citizens confess to us directly.</p>
                     <p>However, if you're just having a hard day and need to vent then you're
                         welcome to contact us here too. Up to you!
                     </p>               
