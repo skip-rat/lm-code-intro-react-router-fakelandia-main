@@ -1,25 +1,26 @@
 import { ALL_MISDEMEANOURS, MISDEMEANOURS } from "../../types/misdemeanours.types";
-import './misdemeanours.css';
+import './filterField.css';
 
-interface FilterFieldProps {
-    //filter: string;
+export interface FilterFieldProps {
     onChangeFilter: (filter: string) => void;
 }
 
 const FilterField: React.FC<FilterFieldProps> = ({ onChangeFilter }: FilterFieldProps) => {
 
-    const filterValues = [ALL_MISDEMEANOURS, ...MISDEMEANOURS];      
+    const filterValues = [ALL_MISDEMEANOURS, ...MISDEMEANOURS];
 
     return (
         <>
-            <label className="container" htmlFor='filterMisdemeanours'>Filter </label>
-            <select id='filterMisdemeanours' name='filterMisdemeanours' onChange={(e) => {
-                onChangeFilter(e.target.value);
-            }}>
-                {filterValues.map((md, index) => <option key={index} value={md}>{md}</option>)}
-            </select>
+            <div className="combobox combobox--centered">
+                <label htmlFor='filterMisdemeanours'>Filter </label>
+                <select id='filterMisdemeanours' name='filterMisdemeanours' onChange={(e) => {
+                    onChangeFilter(e.target.value);
+                }}>
+                    {filterValues.map((md, index) => <option key={index} value={md}>{md}</option>)}
+                </select>
+            </div>
         </>
     );
-}; 
+};
 
 export default FilterField;

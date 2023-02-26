@@ -17,12 +17,12 @@ const Misdemeanours : React.FC = () => {
             throw new Error(`Request failed with status code ${apiResponse.status}`);
         }
             const data = await apiResponse.json(); 
-            setPunishmentIdeaImageUrl(data.misdemeanours);
-            misdemeanourContext?.setMisdemeanoursState(data.misdemeanours);
+            setPunishmentIdeaImageUrl(data.misdemeanours);          
+            misdemeanourContext?.setMisdemeanoursState(data.misdemeanours);           
     };
 
     const setPunishmentIdeaImageUrl = (arr : Misdemeanour[]) : void => {
-        // todo: React is caching and showing the same random image for the Misdemeanour punishment idea
+        // todo: The browser is caching and showing the same random image for the Misdemeanour punishment idea
         // for now am creating a unique url for each one by altering the image size slightly 
         let size = 60;
         arr.forEach(md => md.punishmentIdeaImageUrl = 'https://picsum.photos/seed/picsum' + size +'/' + size++);
